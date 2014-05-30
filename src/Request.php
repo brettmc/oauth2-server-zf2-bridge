@@ -12,31 +12,31 @@ use OAuth2\RequestInterface;
  {
     public function query($name, $default = null)
     {
-        return $this->query->get($name, $default);
+        return $this->getQuery($name, $default);
     }
 
     public function request($name, $default = null)
     {
-        return $this->request->get($name, $default);
+        return $this->getPost($name, $default);
     }
 
     public function server($name, $default = null)
     {
-        return $this->server->get($name, $default);
+        return $this->getServer($name, $default)->toString();
     }
 
     public function headers($name, $default = null)
     {
-        return $this->headers->get($name, $default);
+        return $this->getHeaders($name, $default)->toString();
     }
 
     public function getAllQueryParameters()
     {
-        return $this->query->all();
+        return $this->getQuery()->toArray();
     }
 
     public static function createFromRequest(BaseRequest $request)
     {
-        return new static($request->getQuery(), $request->getPost(), array(), $request->getCookies(), $request->getFiles(), $request->getServer(), $request->getContent());
+        return new static($request->getQuery(), $request->getPost(), array(), $request->getCookie(), $request->getFiles(), $request->getServer(), $request->getContent());
     }
  }
