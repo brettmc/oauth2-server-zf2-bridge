@@ -28,7 +28,7 @@ use OAuth2\RequestInterface;
     public function headers($name, $default = null)
     {
         $headers = $this->getHeaders($name, $default);
-        return is_array($headers) ? $headers->toString() : null;
+        return is_array($headers) ? $headers->toString() : $default;
     }
 
     public function getAllQueryParameters()
